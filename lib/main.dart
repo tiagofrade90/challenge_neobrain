@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'screens/mianScreen.dart';
 import 'screens/splashScreen.dart';
 
 void main() {
