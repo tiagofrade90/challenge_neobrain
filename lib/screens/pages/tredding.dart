@@ -30,14 +30,14 @@ class _TrendingState extends State<Trending> {
             children: <Widget>[
               Text(
                 'name',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontFamily: 'Muli'),
               ),
               SizedBox(height: 5),
               Container(
                 width: MediaQuery.of(context).size.width * 0.70,
                 child: Text(
                   'description',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                  style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
                 ),
               ),
               SizedBox(height: 5),
@@ -49,7 +49,9 @@ class _TrendingState extends State<Trending> {
                       child: Text('imagem'),
                   ),
                   SizedBox(width: 5),
-                  Text('owner'),
+                  Text('owner', 
+                    style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
+                  ),
                   Spacer(),
                   Icon(Icons.star_outlined, color: Colors.black),
                   SizedBox(width: 5),

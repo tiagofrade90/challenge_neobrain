@@ -7,7 +7,7 @@ class Settings extends StatelessWidget {
       child: Center(
         child: Text(
           'Settings',
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 30, fontFamily: 'Muli'),
         )
       ),
     );
