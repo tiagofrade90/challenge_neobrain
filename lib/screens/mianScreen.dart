@@ -1,3 +1,5 @@
+//https://github.com/NeobrainMobile/coding-challenge
+
 import 'package:flutter/material.dart';
 import 'pages/settings.dart';
 import 'pages/tredding.dart';
@@ -21,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('Main Screen'),
+        title: _currentIndex == 0 ? Text('Trending') : Text('Settings'),
       ),
       body: tabPage[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

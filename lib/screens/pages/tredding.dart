@@ -5,6 +5,7 @@ import '../../constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:challenge_neobrain/models/git_hub_reponse.dart';
 import 'package:challenge_neobrain/models/repository.dart';
+import '../detailsScreen.dart';
 
 class Trending extends StatefulWidget {
   @override
@@ -74,48 +75,56 @@ class _TrendingState extends State<Trending> {
   }
 
   buildUserCard(Repository repository) {
-    return Padding(
-      padding: const EdgeInsets.all(0),
-      child: Card(
-        elevation: 5,
-        margin: EdgeInsets.all(1),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 20, bottom: 25, left: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                repository.name ?? 'N/A',
-                style: TextStyle(fontSize: 20, fontFamily: 'Muli'),
-              ),
-              SizedBox(height: 5),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.70,
-                child: Text(
-                  repository.description ?? 'N/A',
-                  style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailsScreen(repository: repository),
+        )
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(0),
+        child: Card(
+          elevation: 5,
+          margin: EdgeInsets.all(1),
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 25, left: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  repository.name ?? 'N/A',
+                  style: TextStyle(fontSize: 20, fontFamily: 'Muli'),
                 ),
-              ),
-              SizedBox(height: 5),
-              Row(
-                children: <Widget>[
-                  Container(
-                      width: 30,
-                      height: 30,
-                      child: Image.network(repository.owner.avatar_url)
-                      ),
-                  SizedBox(width: 5),
-                  Text(repository.owner.name ?? 'N/A', 
+                SizedBox(height: 5),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.70,
+                  child: Text(
+                    repository.description ?? 'N/A',
                     style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
                   ),
-                  Spacer(),
-                  Icon(Icons.star_outlined, color: Colors.black),
-                  SizedBox(width: 5),
-                  Text(repository.stars.toString() ?? 'N/A')
-                ],
-              )
-            ],
+                ),
+                SizedBox(height: 5),
+                Row(
+                  children: <Widget>[
+                    Container(
+                        width: 30,
+                        height: 30,
+                        child: Image.network(repository.owner.avatar_url)
+                        ),
+                    SizedBox(width: 5),
+                    Text(repository.owner.name ?? 'N/A', 
+                      style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
+                    ),
+                    Spacer(),
+                    Icon(Icons.star_outlined, color: Colors.black),
+                    SizedBox(width: 5),
+                    Text(repository.stars.toString() ?? 'N/A')
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
