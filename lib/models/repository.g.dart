@@ -11,9 +11,13 @@ Repository _$RepositoryFromJson(Map<String, dynamic> json) {
       json['name'] as String,
       json['description'] as String,
       json['stargazers_count'] as int,
+      json['language'] as String,
       json['owner'] == null
           ? null
-          : Owner.fromJson(json['owner'] as Map<String, dynamic>));
+          : Owner.fromJson(json['owner'] as Map<String, dynamic>),
+      json['license'] == null
+          ? null
+          : License.fromJson(json['license'] as Map<String, dynamic>));
 }
 
 Map<String, dynamic> _$RepositoryToJson(Repository instance) =>
@@ -21,5 +25,7 @@ Map<String, dynamic> _$RepositoryToJson(Repository instance) =>
       'name': instance.name,
       'description': instance.description,
       'stargazers_count': instance.stars,
-      'owner': instance.owner
+      'language': instance.language,
+      'owner': instance.owner,
+      'license': instance.license
     };

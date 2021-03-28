@@ -3,7 +3,6 @@ import 'package:challenge_neobrain/models/git_hub_reponse.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:challenge_neobrain/models/git_hub_reponse.dart';
 import 'package:challenge_neobrain/models/repository.dart';
 import '../detailsScreen.dart';
 
@@ -16,14 +15,14 @@ class _TrendingState extends State<Trending> {
   @override
   void initState() {
     super.initState();
-  _getGitHubRepositories();
+    _getGitHubRepositories();
   }
 
   _getGitHubRepositories() async {
     var queryParameters = {
       'q': 'created:>2017-10-22',
       'sort': 'stars',
-      'order': 'desc' 
+      'order': 'desc'
     };
 
     var uri = Uri.https(BASE_GITHUB_URL, GITHUBSEARCH, queryParameters);
@@ -32,14 +31,12 @@ class _TrendingState extends State<Trending> {
     if (reponse.statusCode == 200) {
       var reponseDecoded = GitHubReponse.fromJson(json.decode(reponse.body));
       return reponseDecoded;
-    }
-    else {
+    } else {
       print("Error");
     }
   }
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _getGitHubRepositories(),
@@ -77,11 +74,10 @@ class _TrendingState extends State<Trending> {
   buildUserCard(Repository repository) {
     return GestureDetector(
       onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DetailsScreen(repository: repository),
-        )
-      ),
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailsScreen(repository: repository),
+          )),
       child: Padding(
         padding: const EdgeInsets.all(0),
         child: Card(
@@ -111,10 +107,10 @@ class _TrendingState extends State<Trending> {
                     Container(
                         width: 30,
                         height: 30,
-                        child: Image.network(repository.owner.avatar_url)
-                        ),
+                        child: Image.network(repository.owner.avatar_url)),
                     SizedBox(width: 5),
-                    Text(repository.owner.name ?? 'N/A', 
+                    Text(
+                      repository.owner.name ?? 'N/A',
                       style: TextStyle(fontSize: 15, fontFamily: 'Muli'),
                     ),
                     Spacer(),
